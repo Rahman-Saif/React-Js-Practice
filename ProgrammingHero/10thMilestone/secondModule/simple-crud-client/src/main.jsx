@@ -17,11 +17,13 @@ const router = createBrowserRouter([
     path: "/users",
     element: <Users></Users>,
     loader: () => fetch("http://localhost:5000/users"),
-  },{
-    path:'/update/:id',
-    element:<Update></Update>,
-    
-  }
+  },
+  {
+    path: "/update/:id",
+    element: <Update></Update>,
+    loader: ({params}) =>
+      fetch(`http://localhost:5000/update/${params.id}`),
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
