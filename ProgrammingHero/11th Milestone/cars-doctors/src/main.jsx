@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import Services from "./pages/Services.jsx";
+import Checkout from "./pages/Checkout.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/services" element={<Services />}></Route>
+          <Route path="/checkout/:id" element={<Checkout  />} ></Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

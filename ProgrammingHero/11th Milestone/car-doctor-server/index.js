@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://doctor:doctordoctor@cluster0.m4uphyt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -48,6 +48,14 @@ run().catch(console.dir);
 
 app.get('/',(req,res)=>{
     res.send("doctor is running!");
+})
+
+app.get('/services/:id',async(req,res)=>{
+  const id=req.params.id;
+  const query={_id:new ObjectId(id)}
+  const result=await serviceCollection.findOne(query);
+  res.send(result);
+  console.log(result)
 })
 
 app.listen(port,()=>{
