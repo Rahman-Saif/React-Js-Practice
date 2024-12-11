@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import Services from "./pages/Services.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/services" element={<Services />}></Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>
