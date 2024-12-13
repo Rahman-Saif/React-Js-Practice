@@ -52,7 +52,31 @@ async function run() {
         const result=await haiku.deleteOne(query);
         res.send(result);
     })
-    
+
+    app.get('/coffee/:id',async(req,res)=>{
+        const id=req.params.id;
+        const query={_id:new ObjectId(id)}
+        const result=await haiku.findOne(query);
+        res.send(result);
+    })
+
+    app.put('/coffee/:id',async(req,res)=>{
+        const id=req.params.id;
+        const filter={_id:new ObjectId(id)}
+        const options={upsert:true};
+        const updateCoffee=req.body;
+        const updatedCoffee={
+            $set:{
+                name:updateCoffee.name,
+                email:updateCoffee.email,
+                password:updateCoffee.password,
+                hotel:updateCoffee.hotel
+            }
+        }
+
+        const result=await haiku.updateOne(filter,updatedCoffee)
+    })
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");

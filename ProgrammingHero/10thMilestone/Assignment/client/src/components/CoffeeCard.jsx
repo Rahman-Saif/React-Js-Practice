@@ -1,9 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 const CoffeeCard = ({coffee}) => {
 
     const handleDelete=(id)=>{
-        console.log(id);
+
+        fetch(`http://localhost:5000/coffee/${id}`,{
+            method:'DELETE'
+        })
+        .then(res => res.json())
+        .then(data=>console.log(data))
     }
   return (
     <div>
@@ -24,8 +30,11 @@ const CoffeeCard = ({coffee}) => {
           <div className="card-actions justify-end">
             {/* <div className="badge badge-outline"></div>
             <div className="badge badge-outline"></div> */}
-            <button>Edit</button>
-            <button onClick={()=>handleDelete(coffee._id)}>Delete</button>
+            <Link to={`/updateTour/${coffee._id}`}>
+              <button>Edit</button>
+            </Link>
+
+            <button onClick={() => handleDelete(coffee._id)}>Delete</button>
           </div>
         </div>
       </div>
