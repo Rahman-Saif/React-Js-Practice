@@ -1,22 +1,27 @@
-
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./components/Home";
 import AddTour from "./components/AddTour";
 import UpdateTour from "./components/UpdateTour";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    loader: () =>
+      fetch(`http://localhost:5000/coffee`).then((res) => res.json()),
+  },
+  {
+    path: "/addtour",
+    element: <AddTour />,
+  },
+  {
+    path: "/updateTour",
+    element: <UpdateTour />,
+  },
+]);
 
-  return (
-    <>
-      
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/addtour" element={<AddTour />} />
-          <Route path="/updateTour" element={<UpdateTour />} />
-        </Routes>
-      
-    </>
-  );
+function App() {
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
