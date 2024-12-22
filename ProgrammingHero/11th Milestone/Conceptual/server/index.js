@@ -3,6 +3,7 @@ const cors=require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 const app=express();
+app.use(express.json());
 app.use(cors());
 const port=process.env.PORT||5000;
 
@@ -44,6 +45,19 @@ async function run() {
         });
         res.send(result);
 
+    })
+
+    app.post('/bid',async(req,res)=>{
+        const bidData=req.body;
+        console.log(bidData);
+        const result=await bidsCollection.insertOne(bidData);
+        res.send(result);
+    })
+
+    app.post('/job',async(req,res)=>{
+        const jobData=req.body;
+        const result=await jobsCollection.insertOne(jobData);
+        res.send(result);
     })
 
   } finally {

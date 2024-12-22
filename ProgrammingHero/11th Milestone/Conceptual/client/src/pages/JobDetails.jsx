@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 import { useLoaderData } from 'react-router-dom';
 
@@ -9,18 +10,34 @@ const JobDetails = () => {
 
    
 
-    const handleFormSubmit=(e)=>{
+    const handleFormSubmit=async(e)=>{
         e.preventDefault();
         const form=e.target;
 
         const jobId=_id;
         const price=parseFloat(form.price.value);
+        if(price<20) alert("price should be larger!")
         const comment=form.comment.value;
         const email=form.email.value;
         const status="pending";
 
         const bidData={jobId,price,comment,email,status};
         console.table(bidData);
+
+        try{
+            const { data } = await axios.post(
+              "http://localhost:5000/bid",
+              bidData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            console.log(data);
+        }catch(err){
+            console.log(err);
+        }
     }
 
   return (
