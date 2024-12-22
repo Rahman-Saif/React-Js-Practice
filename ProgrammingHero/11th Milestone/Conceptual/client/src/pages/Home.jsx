@@ -13,8 +13,12 @@ import "swiper/css/pagination";
 // import required modules
 import { EffectFade, Navigation, Pagination } from "swiper/modules";
 import TabCate from "./TabCate";
+import { useLoaderData } from "react-router-dom";
 
 export default function Home() {
+
+  // const jobs=useLoaderData();
+  // console.log(jobs);
   return (
     <>
       <Swiper
@@ -40,7 +44,7 @@ export default function Home() {
           <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
         </SwiperSlide>
       </Swiper>
-      <TabCate></TabCate>
+      <TabCate ></TabCate>
     </>
   );
 }
