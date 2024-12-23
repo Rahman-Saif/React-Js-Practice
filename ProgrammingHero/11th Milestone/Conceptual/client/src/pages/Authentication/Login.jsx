@@ -1,11 +1,16 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const navigate=useNavigate();
+  const { user } = useContext(AuthContext);
 
   const { signInWithGoogle, signIn } = useContext(AuthContext);
+  const location=useLocation();
+
+  const from=location.state ||'/';
+  navigate(from,{replace:true});
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
@@ -34,6 +39,12 @@ const Login = () => {
       console.log(err);
     }
   }
+
+  useEffect(()=>{
+    if(user){
+      navigate('/home')
+    }
+  },[navigate,user])
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)]">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl ">

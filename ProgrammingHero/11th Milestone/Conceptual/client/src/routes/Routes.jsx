@@ -6,6 +6,8 @@ import Register from "../pages/Authentication/Register";
 import JobDetails from "../pages/JobDetails";
 import AddJob from "../pages/AddJob";
 import PosterJobs from "../pages/PosterJobs";
+import PrivateRoute from "./PrivateRoute";
+import MyBids from "../pages/MyBids";
 
 const router = createBrowserRouter([
   {
@@ -35,10 +37,17 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/job/${params.id}`)
       },{
         path:"/addjob",
-        element:<AddJob></AddJob>
+        element:<PrivateRoute>
+          <AddJob></AddJob>
+        </PrivateRoute> 
       },{
         path:"/addjob/posted-jobs",
         element:<PosterJobs></PosterJobs>,
+      },{
+        path:"/mybids",
+        element:<PrivateRoute>
+          <MyBids></MyBids>
+        </PrivateRoute>
       }
     ],
   },
