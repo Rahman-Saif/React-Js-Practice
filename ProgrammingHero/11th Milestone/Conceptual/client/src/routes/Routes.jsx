@@ -5,6 +5,7 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import JobDetails from "../pages/JobDetails";
 import AddJob from "../pages/AddJob";
+import PosterJobs from "../pages/PosterJobs";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,9 @@ const router = createBrowserRouter([
       },{
         path:"/addjob",
         element:<AddJob></AddJob>
+      },{
+        path:"/addjob/posted-jobs",
+        element:<PosterJobs></PosterJobs>,
       }
     ],
   },

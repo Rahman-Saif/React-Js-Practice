@@ -47,6 +47,19 @@ async function run() {
 
     })
 
+    app.get('/jobss/:category',async(req,res)=>{
+      const category=req.params.category;
+      const query={category:category}
+      const result=await jobsCollection.find(query).toArray();
+      res.send(result);
+    })
+
+    app.delete('/job/:id',async(req,res)=>{
+      const id=req.params.id;
+      const query={_id:new ObjectId(id)};
+      const result=await jobsCollection.deleteOne(query);
+      res.send(result)
+    })
     app.post('/bid',async(req,res)=>{
         const bidData=req.body;
         console.log(bidData);
